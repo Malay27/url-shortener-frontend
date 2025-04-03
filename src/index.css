@@ -1,0 +1,25 @@
+/* index.css */
+:root {
+  --primary-color: #1976d2;
+  --secondary-color: #757575;
+  --error-color: #d32f2f;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f8;
+  background-image: url('./assets/bgImage.png');
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h4 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
