@@ -14,6 +14,7 @@ import {
   textFieldStyles,
   submitButtonStyles,
 } from "../styles/UrlShortenForm.styles";
+import { toast } from "react-toastify";
 
 interface UrlShortenFormProps {
   onSubmit: (originalUrl: string) => void;
@@ -42,6 +43,7 @@ const UrlShortenForm: React.FC<UrlShortenFormProps> = ({
 
     if (!url.trim() || !urlPattern.test(url)) {
       setError("Please enter a valid URL.");
+      toast.error("Invalid URL. Please check and try again.");
       return;
     }
 

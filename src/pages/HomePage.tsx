@@ -34,21 +34,30 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
 
   const handleSubmit = async (originalUrl: string) => {
+    const successToastId = "success-toast";
+    const errorToastId = "error-toast";
+
     try {
       setError(null);
       setShortenedUrl(null);
       setIsLoading(true);
+
+      // Dismiss any existing toasts
+      toast.dismiss();
 
       const response = await shortenUrl(originalUrl);
 
       const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
       setShortenedUrl(`${baseUrl}/${response.shortUrl}`);
 
-      toast.success("URL shortened successfully!");
+      // Show success toast with a unique ID
+      toast.success("URL shortened successfully!", { toastId: successToastId });
     } catch (err: unknown) {
       setShortenedUrl(null);
       setError("Failed to shorten the URL. " + err);
-      toast.error("Failed to shorten the URL.");
+
+      // Show error toast with a unique ID
+      toast.error("Failed to shorten the URL.", { toastId: errorToastId });
     } finally {
       setIsLoading(false);
     }
