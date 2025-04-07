@@ -36,11 +36,17 @@ const HomePage: React.FC = () => {
   const handleSubmit = async (originalUrl: string) => {
     try {
       setError(null);
+      setShortenedUrl(null);
       setIsLoading(true);
+
       const response = await shortenUrl(originalUrl);
-      setShortenedUrl(response.shortUrl);
+
+      const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
+      setShortenedUrl(`${baseUrl}/${response.shortUrl}`);
+
       toast.success("URL shortened successfully!");
     } catch (err: unknown) {
+      setShortenedUrl(null);
       setError("Failed to shorten the URL. " + err);
       toast.error("Failed to shorten the URL.");
     } finally {
