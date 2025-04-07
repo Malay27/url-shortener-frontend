@@ -32,7 +32,15 @@ const UrlShortenForm: React.FC<UrlShortenFormProps> = ({
     e.preventDefault();
     setError("");
 
-    if (!url.trim()) {
+    const urlPattern = new RegExp(
+      "^(https?:\\/\\/)?" +
+        "((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|" +
+        "localhost|" +
+        "\\d{1,3}(\\.\\d{1,3}){3})" +
+        "(\\:\\d+)?(\\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?$"
+    );
+
+    if (!url.trim() || !urlPattern.test(url)) {
       setError("Please enter a valid URL.");
       return;
     }
