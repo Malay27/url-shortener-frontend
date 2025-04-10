@@ -35,7 +35,6 @@ const UrlResult: React.FC<UrlResultProps> = ({ shortenedUrl }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          flexWrap: "wrap",
           gap: 2,
           bgcolor: alpha(theme.palette.primary.light, 0.1),
           border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
@@ -49,7 +48,11 @@ const UrlResult: React.FC<UrlResultProps> = ({ shortenedUrl }) => {
             fontWeight: 600,
             color: theme.palette.primary.main,
             textDecoration: "none",
-            "&:hover": { textDecoration: "underline" },
+            flex: 1,
+            wordBreak: "break-word",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {shortenedUrl}

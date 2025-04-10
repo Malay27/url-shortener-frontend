@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
 
       const response = await shortenUrl(originalUrl);
 
-      const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
+      const baseUrl = import.meta.env.VITE_BACKEND_URL;
       setShortenedUrl(`${baseUrl}/${response.shortUrl}`);
 
       // Show success toast with a unique ID
